@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmWise360 - Revolutionizing Indian Agriculture</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-green: #1a5d1a;
+      --secondary-green: #2e7d32;
+      --accent-yellow: #fdd835;
+      --accent-orange: #ff8f00;
+      --dark-bg: #0d1b0d;
+      --light-text: #ffffff;
+      --highlight: #4caf50;
+      --success: #00c853;
+      --gradient-primary: linear-gradient(135deg, #1a5d1a 0%, #2e7d32 50%, #4caf50 100%);
+      --gradient-accent: linear-gradient(135deg, #fdd835 0%, #ff8f00 100%);
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --shadow-glow: 0 0 40px rgba(76, 175, 80, 0.3);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(26, 93, 26, 0.6) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(253, 216, 53, 0.3) 0%, transparent 50%),
+        linear-gradient(rgba(13, 27, 13, 0.8), rgba(13, 27, 13, 0.9)), 
+        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--light-text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated background particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--highlight);
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+      50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+    }
+
+    .main-content {
+      z-index: 10;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .tagline {
+      font-size: 1.8rem;
+      margin-bottom: 3rem;
+      font-weight: 400;
+      max-width: 900px;
+      line-height: 1.4;
+      background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .highlight {
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .section-card {
+      max-width: 1000px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 3rem;
+      border-radius: 24px;
+      margin-bottom: 2.5rem;
+      text-align: left;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    .section-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(76, 175, 80, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .section-card:hover::before {
+      left: 100%;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 3px;
+      background: var(--gradient-accent);
+      border-radius: 3px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .feature-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-item:hover {
+      background: rgba(76, 175, 80, 0.1);
+      border-color: var(--highlight);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    .feature-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-yellow);
+    }
+
+    .benefit-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .benefit-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .benefit-item::before {
+      content: '✓';
+      position: absolute;
+      left: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--success);
+      background: rgba(0, 200, 83, 0.2);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: left 0.3s ease;
+    }
+
+    .benefit-item:hover {
+      background: rgba(0, 200, 83, 0.1);
+      border-color: var(--success);
+      transform: translateX(10px);
+    }
+
+    .benefit-item:hover::before {
+      left: 10px;
+    }
+
+    .countdown-container {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .countdown-item {
+      background: var(--gradient-primary);
+      border-radius: 16px;
+      padding: 1.5rem;
+      min-width: 120px;
+      text-align: center;
+      box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .countdown-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+    }
+
+    .countdown-item:hover {
+      transform: scale(1.1) rotateY(5deg);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .countdown-number {
+      display: block;
+      font-size: 3rem;
+      font-weight: 800;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .countdown-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .cta-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 3rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.5; }
+      50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
+    }
+
+    .cta-text {
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .email-form {
+      position: relative;
+      z-index: 2;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .form-control {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .form-control:focus {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border-color: var(--highlight);
+      box-shadow: 0 0 0 0.25rem rgba(76, 175, 80, 0.25);
+      outline: none;
+    }
+
+    .btn-cta {
+      background: var(--gradient-primary);
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(26, 93, 26, 0.4);
+    }
+
+    .btn-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(26, 93, 26, 0.6);
+      background: var(--secondary-green);
+    }
+
+    .btn-cta:hover::before {
+      left: 100%;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      background: var(--highlight);
+      color: white;
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      z-index: 10;
+      position: relative;
+    }
+
+    /* Scroll animations */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Success message styles */
+    .success-message {
+      background: var(--gradient-primary);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      margin-top: 1rem;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 0.3s ease;
+    }
+
+    .success-message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Enhanced responsive design */
+    @media (max-width: 768px) {
+      h1 { font-size: 3rem; }
+      .tagline { font-size: 1.4rem; }
+      .section-card { padding: 2rem; margin-bottom: 2rem; }
+      .section-title { font-size: 1.8rem; }
+      .countdown { gap: 1rem; }
+      .countdown-item { min-width: 90px; padding: 1rem; }
+      .countdown-number { font-size: 2.5rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 576px) {
+      h1 { font-size: 2.5rem; }
+      .tagline { font-size: 1.2rem; }
+      .section-card { padding: 1.5rem; }
+      .countdown-item { min-width: 80px; }
+      .countdown-number { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated particles background -->
+  <div class="particles" id="particles"></div>
+
+  <div class="main-content">
+    <h1>FarmWise360</h1>
+    <div class="tagline">
+      Empowering <span class="highlight">Indian Farmers</span> with AI-Driven Agricultural Intelligence
+    </div>
+
+    <div class="section-card fade-in-up" data-delay="0">
+      <h2 class="section-title">🌾 About FarmWise360</h2>
+      <p>
+        <strong>FarmWise360</strong> is a revolutionary agricultural technology platform developed by <strong>Times Point Technologies Pvt. Ltd.</strong>, Our comprehensive solution bridges the gap between traditional farming practices and modern technological advancements, creating a sustainable ecosystem for farmers of all scales.
+      </p>
+      <p>
+        Designed specifically for the diverse Indian agricultural landscape, FarmWise360 addresses critical challenges faced by farmers - from unpredictable weather patterns and soil degradation to market access and financial inclusion. Our platform serves as a digital companion for farmers, providing actionable insights at every stage of the farming lifecycle.
+      </p>
+      <p>
+        What sets FarmWise360 apart is our localized approach. We've developed regional models that account for India's varied agro-climatic zones, soil types, and cropping patterns. Our AI algorithms are trained on millions of data points specific to Indian agriculture, ensuring recommendations are accurate and practical for farmers across the country.
+      </p>
+    </div>
+
+    <div class="section-card fade-in-up" data-delay="200">
+      <h2 class="section-title">🌟 Comprehensive Features</h2>
+      <p>FarmWise360 offers an integrated suite of tools designed to empower farmers with knowledge and resources:</p>
+      
+      <div class="feature-grid">
+        <div class="feature-item">
+          <span class="feature-icon">🌱</span>
+          <div class="feature-title">Intelligent Crop Planning</div>
+          <p>AI analyzes 15+ parameters including soil composition, weather history, water availability, and market demand to recommend optimal crops with projected yield and profitability estimates.</p>
+        </div>
+        
+        <div class="feature-item">
+          <span class="feature-icon">⛅</span>
+          <div class="feature-title">Hyperlocal Weather Intelligence</div>
+          <p>Get 7-day forecasts at 1km resolution with alerts for rainfall, frost, heatwaves, and other weather events that could impact your crops.</p>
+        </div>
+        
+        <div class="feature-item">
+          <span class="feature-icon">🤝</span>
+          <div class="feature-title">Farmer Social Network & Marketplace</div>
+          <p>Connect with a community of 500,000+ farmers across India to share knowledge and best practices. Our integrated marketplace enables direct buying/selling of seeds, equipment, fertilizers, and produce with verified buyers and sellers, secure payments, and logistics support.</p>
+        </div>
+        
+        <div class="feature-item">
+          <span class="feature-icon">📊</span>
+          <div class="feature-title">Market Price Analytics</div>
+          <p>Real-time price tracking across 3,000+ mandis with predictive analytics to help you decide when and where to sell for maximum profit.</p>
+        </div>
+        
+        <div class="feature-item">
+          <span class="feature-icon">🔍</span>
+          <div class="feature-title">Pest & Disease Detection</div>
+          <p>Image recognition AI can identify 150+ common pests and diseases in Indian crops with 92% accuracy, providing treatment options.</p>
+        </div>
+        
+        <div class="feature-item">
+          <span class="feature-icon">🏛️</span>
+          <div class="feature-title">Government Scheme Navigator</div>
+          <p>Simplified access to 200+ central and state government schemes with eligibility checks, application assistance, and status tracking.</p>
+        </div>
+        
+        <div class="feature-item">
+          <span class="feature-icon">💬</span>
+          <div class="feature-title">Expert Connect</div>
+          <p>24/7 access to agricultural scientists, agronomists, and successful farmers through chat, voice, and video call options.</p>
+        </div>
+        
+        <div class="feature-item">
+          <span class="feature-icon">🌐</span>
+          <div class="feature-title">Regional Language Support</div>
+          <p>Available in 12 Indian languages with voice input/output for farmers with low literacy levels.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card fade-in-up" data-delay="400">
+      <h2 class="section-title">💡 Key Benefits for Farmers</h2>
+      <p>FarmWise360 delivers measurable improvements across all aspects of farming:</p>
+      
+      <div class="benefit-list">
+        <div class="benefit-item">
+          <strong>Increased Yields:</strong> Our users typically see 15-30% higher productivity through optimized planting schedules and crop management.
+        </div>
+        <div class="benefit-item">
+          <strong>Reduced Costs:</strong> Precision agriculture features help cut input costs by 20-40% through efficient use of water, fertilizers, and pesticides.
+        </div>
+        <div class="benefit-item">
+          <strong>Better Prices:</strong> Access to real-time market data helps farmers get 10-25% better prices for their produce.
+        </div>
+        <div class="benefit-item">
+          <strong>Risk Mitigation:</strong> Early warnings for weather events and pest outbreaks help prevent crop losses.
+        </div>
+        <div class="benefit-item">
+          <strong>Financial Access:</strong> Integrated micro-loan platform connects farmers with affordable credit options.
+        </div>
+        <div class="benefit-item">
+          <strong>Knowledge Sharing:</strong> Learn modern techniques from agricultural experts and successful peers.
+        </div>
+      </div>
+    </div>
+
+    <div class="countdown-container fade-in-up" data-delay="600">
+      <div class="countdown">
+        <div class="countdown-item">
+          <span class="countdown-number" id="days">00</span>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">00</span>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="minutes">00</span>
+          <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number" id="seconds">00</span>
+          <div class="countdown-label">Seconds</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section fade-in-up" data-delay="800">
+      <p class="cta-text">
+        We're launching on <strong>January 31, 2026</strong> to begin our mission of transforming Indian agriculture. Join our early access program to be among the first to experience FarmWise360!
+      </p>
+
+      <form class="email-form" id="emailForm">
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Enter your email address" required id="emailInput" />
+          <button class="btn btn-cta" type="submit">Get Early Access 🚀</button>
+        </div>
+        <small class="text-muted">We respect your privacy. Your information will not be shared.</small>
+        <div class="success-message" id="successMessage">
+          <strong>🎉 Thank you!</strong> We'll notify you when FarmWise360 launches!
+        </div>
+      </form>
+
+      <div class="social-links">
+        <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Times Point Technologies Pvt Ltd.</p>
+      <p>Contact: <a href="mailto:hello@farmwise360.com" style="color: var(--highlight);">farmwise360@gmail.com</a> | <a href="tel:+919591236812" style="color: var(--highlight);">+91 9591236812</a></p>
+    </div>
+  </footer>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script>
+    // Create animated particles
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Enhanced Countdown Timer with smooth animations
+    const launchDate = new Date("January 31, 2026 00:00:00").getTime();
+    
+    const formatNumber = (num) => num < 10 ? `0${num}` : num;
+    
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const timeLeft = launchDate - now;
+      
+      if (timeLeft < 0) {
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+        return;
+      }
+      
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+      
+      // Smooth number transitions
+      const elements = ['days', 'hours', 'minutes', 'seconds'];
+      const values = [days, hours, minutes, seconds];
+      
+      elements.forEach((element, index) => {
+        const el = document.getElementById(element);
+        const newValue = formatNumber(values[index]);
+        
+        if (el.textContent !== newValue) {
+          el.style.transform = 'scale(1.2)';
+          el.style.color = '#fdd835';
+          
+          setTimeout(() => {
+            el.textContent = newValue;
+            el.style.transform = 'scale(1)';
+            el.style.color = '';
+          }, 150);
+        }
+      });
+    };
+    
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    // Enhanced form submission with better UX
+    document.getElementById('emailForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById('emailInput');
+      const submitBtn = e.target.querySelector('button');
+      const successMessage = document.getElementById('successMessage');
+      const email = emailInput.value.trim();
+      
+      // Enhanced email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        // Create and show error message
+        showMessage('Please enter a valid email address', 'error');
+        emailInput.focus();
+        return;
+      }
+      
+      // Animate button during submission
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+      submitBtn.disabled = true;
+      
+      // Simulate API call
+      setTimeout(() => {
+        successMessage.textContent = `🎉 Thank you! We'll notify you at ${email} when FarmWise360 launches!`;
+        successMessage.classList.add('show');
+        emailInput.value = '';
+        
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          successMessage.classList.remove('show');
+        }, 5000);
+      }, 1500);
+    });
+    
+    // Utility function for showing messages
+    function showMessage(text, type = 'success') {
+      const message = document.createElement('div');
+      message.className = `alert alert-${type === 'error' ? 'danger' : 'success'} mt-3`;
+      message.style.borderRadius = '12px';
+      message.style.opacity = '0';
+      message.style.transform = 'translateY(-20px)';
+      message.style.transition = 'all 0.3s ease';
+      message.innerHTML = text;
+      
+      const form = document.getElementById('emailForm');
+      form.appendChild(message);
+      
+      // Animate in
+      setTimeout(() => {
+        message.style.opacity = '1';
+        message.style.transform = 'translateY(0)';
+      }, 100);
+      
+      // Remove after 4 seconds
+      setTimeout(() => {
+        message.style.opacity = '0';
+        message.style.transform = 'translateY(-20px)';
+        setTimeout(() => {
+          if (message.parentNode) {
+            message.parentNode.removeChild(message);
+          }
+        }, 300);
+      }, 4000);
+    }
+    
+    // Feature items hover effects
+    document.querySelectorAll('.feature-item').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        item.style.transform = 'translateY(-8px) scale(1.02)';
+      });
+      
+      item.addEventListener('mouseleave', () => {
+        item.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+    
+    // Smooth scrolling for better UX
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize particles
+      createParticles();
+      
+      // Start countdown
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+      
+      // Initialize scroll animations
+      document.querySelectorAll('.fade-in-up').forEach(el => {
+        observer.observe(el);
+      });
+      
+      // Add loading animation
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        document.body.style.transition = 'opacity 1s ease-in-out';
+        document.body.style.opacity = '1';
+      }, 100);
+    });
+    
+    // Add dynamic background color changes based on scroll
+    window.addEventListener('scroll', () => {
+      const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+      const hue = 120 + (scrollPercent * 60); // Changes from green to yellow-green
+      document.documentElement.style.setProperty('--primary-green', `hsl(${hue}, 60%, 25%)`);
+    });
+    
+    // Add click ripple effect to buttons
+    document.querySelectorAll('.btn-cta, .countdown-item').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+    
+    // Add CSS for ripple effect
+    const style = document.createElement('style');
+    style.textContent = `
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple-animation 0.6s linear;
+        pointer-events: none;
+      }
+      
+      @keyframes ripple-animation {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+      
+      .btn-cta, .countdown-item {
+        position: relative;
+        overflow: hidden;
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
